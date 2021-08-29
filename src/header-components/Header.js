@@ -24,7 +24,8 @@ class Header extends React.Component {
             
           <Link className="ml-auto" to="/">Home</Link>
           <Link className="ml-auto" to="/profile">Profile</Link>
-          {/* TODO: if the user is logged in, render the `LogoutButton` - if the user is logged out, render the `LoginButton` */}
+          <Link className="ml-auto" to="/favorites">Favorites</Link>
+
           </Nav>
           
           {isAuthenticated ? <LogoutButton /> : <LoginButton />}

@@ -1,13 +1,8 @@
 import React from 'react';
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Jumbotron from 'react-bootstrap/Jumbotron';
-import './BestBooks.css';
-import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {Card, Col} from "react-bootstrap";
 import { withAuth0 } from '@auth0/auth0-react';
-// import BookCard from './components/BookCard';
-// import { Row } from 'react-bootstrap';
-// import BookFormModal from './components/BookFormModal';
-import { withAuth0 } from "@auth0/auth0-react";
+
 class MyFavorite extends React.Component {
   constructor(props) {
     super(props);
@@ -15,53 +10,40 @@ class MyFavorite extends React.Component {
     favoritePlace:[],
     };
   }
-componentDidMount = async () => {
-  const { user } = this.props.auth0;
-  console.log(this.props.auth0);
-  if (user !== undefined) {
-    let userEmail = user.email;
-    this.setState({
-      email: userEmail,
-    });
-    let dataOfPlace = await axios.get(
-      `${process.env.REACT_APP_SERVER}/favoriteplace?email=${userEmail}`
-    );
-     this.setState({
-      favoritePlace: dataOfPlace.data,
-      show: true,
-    });
-  }
-};
+
   render() {
     return (
-      this.state.favoritePlace.map((item ,key ) =>{
+      this.props.dataOfMyFav.map((item ,key ) =>{
         return (
-          <div>
-        <br />
-        <br />
-        <Card
-          style={{ width: "18rem", display: "inline-block" }}
-        >
-          <Card.Body>
-            <Card.Title>{this.props.title}</Card.Title>
-            <Card.Text>{this.props.description}</Card.Text>
-            <Card.Text>{this.props.status}</Card.Text>
-          </Card.Body>
-          <br/>
-          <Button
-            onClick={()=>{this.props.deletebook(this.props._id)}}
-            type="click"
-            variant="secondary"
-          >Delete</Button>
-           <Button
-            onClick={()=>{this.props.showModelUpdate(this.props._id)}}
-            type="click"
-            variant="secondary"
-          >Update</Button>
-        </Card>
-        <br />
-        <br />
-      </div>
+          <Col>
+                <Card bg="secondary" text="white" style={{ margin: "30px 5px" }}>
+                    <Card.Img src={this.props.dataOfMyFav.image_url} style={{
+                        width: '100%',
+                        height: '50vh',
+                        objectFit: 'cover',
+                        maxHeight: '100vh'
+                    }} />
+                    <Card.Body>
+                        <Card.Title>{this.props.dataOfMyFav.name}</Card.Title>
+                        {/* <Card.Text>
+                  {`${this.props.movie.overview.substring(0,100)}... `}<a style={{color:"white"}} href="#">read more</a>
+                </Card.Text> */}
+                        <Card.Text variant="primary">
+                            Price {this.props.dataOfMyFav.price}
+                        </Card.Text>
+                        <Card.Text>
+                            Rating  {this.props.dataOfMyFav.rating}
+                        </Card.Text>
+                        <Card.Text>
+                            <a className='anchor' href={this.props.dataOfMyFav.url}>Explore {this.props.dataOfMyFav.name}</a>
+
+                        </Card.Text>
+                    </Card.Body>
+                    {/* <Card.Footer>
+            <small >Released On  {this.props.movie.released_on}</small>
+            </Card.Footer> */}
+                </Card>
+            </Col>
       )
       }
       )
