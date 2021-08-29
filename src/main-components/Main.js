@@ -3,17 +3,18 @@ import { withAuth0 } from '@auth0/auth0-react';
 import Login from './Login';
 import Profile from './Profile';
 import BestBooks from './BestBooks'
+import Favorites from './fav-components/Favorites'
 
 
 import {
     Switch,
     Route
-  } from "react-router-dom";
+} from "react-router-dom";
 
 class Main extends Component {
-    
+
     render() {
-        const {  isAuthenticated  } = this.props.auth0;
+        const { isAuthenticated } = this.props.auth0;
 
         return (
             <div>
@@ -25,6 +26,10 @@ class Main extends Component {
 
                         <Profile />
                     </Route>
+                    <Route exact path="/favorites">
+
+                        <Favorites />
+                    </Route>
                 </Switch>
 
             </div>
@@ -32,4 +37,4 @@ class Main extends Component {
     }
 }
 
-export default  withAuth0(Main);
+export default withAuth0(Main);
