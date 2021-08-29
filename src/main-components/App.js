@@ -53,13 +53,13 @@ handleSubmit = async (e) => {
     let userEmail = user.email;
    
    let newData={
-    phone:phone,
-    image_url:image_url,
-    rating:rating,
-    review_count:review_count,
     name:name,
-    url:url,
+    rating:rating,
+    image_url:image_url,
     email:userEmail,
+    phone:phone,
+    review_count:review_count,
+   url:url,
    }
 let Url = await axios.post(`${process.env.REACT_APP_SERVER}/newfavorite`,newData);
 this.setState({
