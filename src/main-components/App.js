@@ -11,12 +11,13 @@ import Login from "./Login";
 import Profile from "./Profile"
 // import MyFavorite from "./MyFavorite"
 import { withAuth0 } from '@auth0/auth0-react';
+import Favorites from './fav-components/Favorites'
+
 
 
 class App extends React.Component {
 
   render() {
-    console.log('app', this.props);
     return (
       <>
         <Router>
@@ -27,6 +28,9 @@ class App extends React.Component {
             </Route>
             <Route exact path="/profile">
               <Profile />
+            </Route>
+            <Route exact path="/favorites">
+              <Favorites />
             </Route>
           </Switch>
           <Footer />
