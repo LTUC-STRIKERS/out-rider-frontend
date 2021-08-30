@@ -3,10 +3,10 @@ import Header from "../header-components/Header";
 import Main from "./Main";
 import Footer from "../footer-components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./Login";
 import Profile from "./Profile";
 import MyFavorites from "./MyFavorites";
 import { withAuth0 } from "@auth0/auth0-react";
+import Favorites from "./fav-components/Favorites";
 // import Favorites from './fav-components/Favorites'
 const axios = require("axios");
 
@@ -14,34 +14,45 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchCity: "",
       restaurants: [],
+      cityName: "",
+      status: false,
+      statusText: "",
+      cityLocation: {},
       email: "",
       dataOfMyFav: [],
     };
   }
 
-  handleSubmit = async (e) => {
-    e.preventDefault();
-    await this.setState({
-      searchCity: e.target.city.value,
-    });
-    console.log("ffrefffff", this.state.searchCity);
-    try {
-      let restuarants = await axios.get(
-        `${process.env.REACT_APP_SERVER}/search?location=${this.state.searchCity}`
-      );
-      this.setState({
-        restaurants: restuarants.data,
-      });
-    } catch (error) {
-      console.log("ERROR");
-    }
-  };
+  // handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   await this.setState({
+  //     cityName: e.target.city.value,
+  //   });
+  //   console.log("ffrefffff", this.state.cityName);
+  //   try {
+  //     let restuarants = await axios.get(
+  //       `${process.env.REACT_APP_SERVER}/search?location=${this.state.cityName}`
+  //     );
+  //     this.setState({
+  //       restaurants: restuarants.data,
+  //     });
+  //   } catch (error) {
+  //     console.log("ERROR");
+  //   }
+  // };
   ////////////////////////////
 
   //http://localhost:3001/newfavorite',
-  addRestaurantToMyFav = async (name, rating, image_url, phone, review_count, url,id) => {
+  addRestaurantToMyFav = async (
+    name,
+    rating,
+    image_url,
+    phone,
+    review_count,
+    url,
+    id,
+  ) => {
     const { user } = this.props.auth0;
     console.log(this.props.auth0);
     if (user !== undefined) {
@@ -66,40 +77,81 @@ class App extends React.Component {
         dataOfMyFav: favRestaurants.data,
       });
     }
-    console.log('wdereeeedecedcee',this.state.dataOfMyFav)
+    console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
   };
-//   stateFunctionData=async (data)=>{
-// this.setState({
-//   dataOfMyFav: data,
-// })
-//   }
+  //   stateFunctionData=async (data)=>{
+  // this.setState({
+  //   dataOfMyFav: data,
+  // })
+  //   }
   ///////////////
-  
+
   //
+
+  getLocation = async (e) => {
+    e.preventDefault();
+    // this.props.history.push('/')
+    await this.setState({
+      cityName: e.target.cityName.value,
+    });
+
+    axios
+      .get(
+        `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.cityName}&format=json`
+      )
+      .then((locationData) => {
+        // console.log("location data"+locationData);
+        this.setState({
+          cityLocation: locationData.data[0],
+          status: locationData.status,
+          statusText: locationData.statusText,
+        });
+        console.log('sssssssssssssssssssss',this.state.cityLocation);
+      })
+      .catch((error) => {
+        if (error.response) {
+          this.setState({
+            status: error.response.status,
+            statusText: error.response.data.error,
+          });
+        }
+      });
+
+    try {
+      let restaurants = await axios.get(
+        `${process.env.REACT_APP_SERVER}/restaurants?cityName=${this.state.cityName}`
+      );
+      await this.setState({
+        restaurants: restaurants.data,
+      });
+      console.log(' insid rasturant:',this.state.restaurants);
+    } catch (error) {
+      console.log("ERROR");
+    }
+    // window.location.href ='/'
+  };
+
   render() {
     return (
       <>
         <Router>
-          <Header />
+          <Header getLocation={this.getLocation} />
           <Switch>
             <Route exact path="/">
-              {this.props.auth0.isAuthenticated ? (
-                <Main
+              <Main
                 addRestaurantToMyFav={this.addRestaurantToMyFav}
-                  restaurants={this.state.restaurants}
-                  handleSubmit={this.handleSubmit}
-                  searchCity={this.state.searchCity}
-                />
-              ) : (
-                <Login />
-              )}
+                restaurants={this.state.restaurants}
+              />
             </Route>
             <Route exact path="/profile">
               <Profile />
             </Route>
-            <Route exact path="/favorites"></Route>
+
             <Route exact path="/MyFavorite">
-              <MyFavorites  dataOfMyFav={this.state.dataOfMyFav} />
+              <MyFavorites dataOfMyFav={this.state.dataOfMyFav} />
+            </Route>
+            <Route exact path="/favorites">
+              <Favorites cityData={this.state} />
             </Route>
           </Switch>
           <Footer />
@@ -110,3 +162,4 @@ class App extends React.Component {
 }
 // stateFunctionData={this.stateFunctionData}
 export default withAuth0(App);
+// cityName={this.state.cityName}
