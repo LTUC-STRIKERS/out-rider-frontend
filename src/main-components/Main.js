@@ -17,7 +17,7 @@ class Main extends Component {
         return (
             <div>
                 <SearchForm handleSubmit={this.props.handleSubmit} />
-                <Restaurants gitDataOfFav={this.props.gitDataOfFav} restaurants={this.props.restaurants} />
+                <Restaurants addRestaurantToMyFav={this.props.addRestaurantToMyFav} restaurants={this.props.restaurants} />
             </div>
 
         )

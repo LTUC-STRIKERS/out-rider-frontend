@@ -25,6 +25,7 @@ class Header extends React.Component {
           <Link className="ml-auto" to="/">Home</Link>
           <Link className="ml-auto" to="/profile">Profile</Link>
           <Link className="ml-auto" to="/favorites">Favorites</Link>
+          <Link className="ml-auto" to="/MyFavorite">MY Favorites</Link>
 
           </Nav>
           
