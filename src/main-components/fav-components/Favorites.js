@@ -162,14 +162,7 @@ import MapboxDirections from '@mapbox/mapbox-gl-directions/dist/mapbox-gl-direct
 import '@mapbox/mapbox-gl-directions/dist/mapbox-gl-directions.css'
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY;
 class Favorites extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      restaurants: this.props.cityData.restaurants,
-      location: this.props.cityData.cityLocation
-    }
-    console.log(this.state,'state');
-  }
+  
   // getRestaurantsData = async ()=>{
   //   // const rootPath = constants.rootPath;
   // let restaurants = await  axios.get(`${[process.env.REACT_APP_SERVER]}/restaurants`);
@@ -195,6 +188,7 @@ class Favorites extends React.Component {
       center: [this.props.cityData.cityLocation.lon,this.props.cityData.cityLocation.lat],
       zoom: 12
     });
+    console.log('datdat',this.props.cityData);
     console.log(this.map,"wwwww");
     // Creates new directions control instance
     const directions = new MapboxDirections({
