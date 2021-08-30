@@ -3,7 +3,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navbar, Nav,Form,Button,FormControl } from 'react-bootstrap';
 import { Link } from "react-router-dom";
 import './Header.css';
-import { Redirect } from "react-router";
 import LoginButton from '../auth-components/LoginButton';
 import LogoutButton from '../auth-components/LogoutButton';
 import { withAuth0 } from '@auth0/auth0-react';
@@ -20,8 +19,7 @@ class Header extends React.Component {
           <Navbar.Brand>Out Rider</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-       
-
+         
             {isAuthenticated ? <>
               <Nav className="me-auto"
               style={{ maxHeight: '100px' }}
@@ -30,6 +28,8 @@ class Header extends React.Component {
               <Link className="ml-auto" to="/">Home</Link>
               <Link className="ml-auto" to="/profile">Profile</Link>
               <Link className="ml-auto" to="/favorites">Favorites</Link>
+          <Link className="ml-auto" to="/MyFavorite">MY Favorites</Link>
+
 
             </Nav>
             <LogoutButton />
