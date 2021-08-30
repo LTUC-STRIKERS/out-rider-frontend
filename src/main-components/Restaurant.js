@@ -46,7 +46,7 @@ class Restaurant extends React.Component {
             type="click"
             variant="secondary"
           >
-            Update
+            Add To My Favorites
           </Button>
         </Card>
       </Col>
