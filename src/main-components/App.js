@@ -7,7 +7,7 @@ import Profile from "./Profile";
 import MyFavorites from "./MyFavorites";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
-// import Favorites from './fav-components/Favorites'
+import AboutUs from "./AboutUs";
 const axios = require("axios");
 
 class App extends React.Component {
@@ -23,27 +23,6 @@ class App extends React.Component {
       dataOfMyFav: [],
     };
   }
-
-  // handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   await this.setState({
-  //     cityName: e.target.city.value,
-  //   });
-  //   console.log("ffrefffff", this.state.cityName);
-  //   try {
-  //     let restuarants = await axios.get(
-  //       `${process.env.REACT_APP_SERVER}/search?location=${this.state.cityName}`
-  //     );
-  //     this.setState({
-  //       restaurants: restuarants.data,
-  //     });
-  //   } catch (error) {
-  //     console.log("ERROR");
-  //   }
-  // };
-  ////////////////////////////
-
-  //http://localhost:3001/newfavorite',
   addRestaurantToMyFav = async (
     name,
     rating,
@@ -79,14 +58,6 @@ class App extends React.Component {
     }
     console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
   };
-  //   stateFunctionData=async (data)=>{
-  // this.setState({
-  //   dataOfMyFav: data,
-  // })
-  //   }
-  ///////////////
-
-  //
 
   getLocation = async (e) => {
     e.preventDefault();
@@ -153,6 +124,10 @@ class App extends React.Component {
             <Route exact path="/favorites">
               <Favorites cityData={this.state} />
             </Route>
+            <Route exact path="/aboutus">
+              <AboutUs />
+            </Route>
+            
           </Switch>
           <Footer />
         </Router>
@@ -160,6 +135,4 @@ class App extends React.Component {
     );
   }
 }
-// stateFunctionData={this.stateFunctionData}
 export default withAuth0(App);
-// cityName={this.state.cityName}

@@ -30,7 +30,7 @@ class Header extends React.Component {
               <Link className="ml-auto" to="/favorites">Favorites</Link>
           <Link className="ml-auto" to="/MyFavorite">MY Favorites</Link>
 
-
+          <Link className="ml-auto" to="/aboutus">ABout Us</Link>
             </Nav>
             <LogoutButton />
 
