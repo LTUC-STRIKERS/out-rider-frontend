@@ -104,7 +104,7 @@ addRestaurantToMyFav = async () => {
       cityName: e.target.cityName.value,
     });
 
-    axios
+   await axios
       .get(
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.cityName}&format=json`
       )
