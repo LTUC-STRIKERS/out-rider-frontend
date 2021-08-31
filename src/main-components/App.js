@@ -4,10 +4,10 @@ import Main from "./Main";
 import Footer from "../footer-components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Profile from "./Profile";
-import MyFavorites from "./MyFavorites";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
+import FavRestaurants from "./FavRestaurants";
 import ContactUs from "./ContactUs";
 const axios = require("axios");
 
@@ -22,43 +22,80 @@ class App extends React.Component {
       cityLocation: {},
       email: "",
       dataOfMyFav: [],
+      user: this.props.auth0,
+      showAddRestaurant:false,
+      favRestaurant:{},
+      showDeleteRestaurant:false,
+      idOfdeletedFavRestaurant:''
+
     };
   }
-  addRestaurantToMyFav = async (
-    name,
-    rating,
-    image_url,
-    phone,
-    review_count,
-    url,
-    id,
-  ) => {
-    const { user } = this.props.auth0;
-    console.log(this.props.auth0);
-    if (user !== undefined) {
-      let userEmail = user.email;
 
-      let newData = {
-        name: name,
-        rating: rating,
-        image_url: image_url,
-        email: userEmail,
-        phone: phone,
-        review_count: review_count,
-        url: url,
-        id: id,
-      };
-      console.log("dffdgfdgfgf", newData);
-      let favRestaurants = await axios.post(
-        `${process.env.REACT_APP_SERVER}/addrestomyfavorite`,
-        newData
-      );
-      this.setState({
-        dataOfMyFav: favRestaurants.data,
-      });
-    }
-    console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
-  };
+
+////////////////////////////
+addRestaurantToMyFav = async () => {
+  const { user } = this.props.auth0;
+  console.log(this.props.auth0);
+  if (user !== undefined) {
+    let userEmail = user.email;
+
+    let newData = {
+      name: this.state.favRestaurant.name,
+      rating: this.state.favRestaurant.rating,
+      image_url: this.state.favRestaurant.image_url,
+      email: userEmail,
+      phone: this.state.favRestaurant.phone,
+      review_count: this.state.favRestaurant.review_count,
+      url: this.state.favRestaurant.url,
+      id_res: this.state.favRestaurant.id,
+      longitude: this.state.favRestaurant.longitude,
+      latitude: this.state.favRestaurant.latitude,
+    };
+    console.log("dffdgfdgfgf", newData);
+    try {
+      
+    
+    let favRestaurants = await axios.post(
+      `${process.env.REACT_APP_SERVER}/addrestomyfavorite`,
+      newData
+    );
+    this.setState({
+      dataOfMyFav: favRestaurants.data,
+      showAddRestaurant:false
+    });
+
+  }
+  catch (e) {
+
+  }
+  }
+  console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
+};
+
+
+  componentDidMount = async () => {
+    
+            console.log('fffdddd');
+            console.log(this.props.auth0);
+            if (this.state.user !== undefined) {
+              console.log('jj');
+              let userEmail = this.state.user.email;
+              this.setState({
+                email: userEmail,
+              });
+              let dataOfPlace =  axios.get(
+                `${process.env.REACT_APP_SERVER}/favoriterestaurents?email=${userEmail}`
+              );
+    
+             await this.setState({
+                dataOfMyFav:dataOfPlace.data,
+              })
+              console.log('kkkkkkkkkkkkkkkkkkkk',this.state.dataOfMyFav);
+            // this.props.stateFunctionData( dataOfPlace.data); 
+              
+            }
+            
+          };
 
   getLocation = async (e) => {
     e.preventDefault();
@@ -103,6 +140,23 @@ class App extends React.Component {
     // window.location.href ='/'
   };
 
+  showModalToAddRestaurant = (id)=>{
+    let restaurant = this.state.restaurants.find(restaurant => restaurant.id=== id);
+
+
+    this.setState({
+      showAddRestaurant:true,
+      favRestaurant:restaurant
+    })
+  }
+
+  handleClose= ()=>{
+    this.setState({
+      showAddRestaurant:false,
+    })
+  }
+
+  
   render() {
     return (
       <>
@@ -111,7 +165,10 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/">
               <Main
+                handleClose={this.handleClose}
+                showModalToAddRestaurant={this.showModalToAddRestaurant} 
                 addRestaurantToMyFav={this.addRestaurantToMyFav}
+                showAddRestaurant = {this.state.showAddRestaurant}
                 restaurants={this.state.restaurants}
               />
             </Route>
@@ -120,7 +177,10 @@ class App extends React.Component {
             </Route>
 
             <Route exact path="/MyFavorite">
-              <MyFavorites dataOfMyFav={this.state.dataOfMyFav} />
+              <FavRestaurants 
+      
+              dataOfMyFav={this.state.dataOfMyFav}
+              />
             </Route>
             <Route exact path="/favorites">
               <Favorites cityData={this.state} />

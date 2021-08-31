@@ -11,12 +11,17 @@ class Main extends Component {
 
         return (
             <div>
-                <Restaurants addRestaurantToMyFav={this.props.addRestaurantToMyFav} restaurants={this.props.restaurants} />
+                <Restaurants
+                  handleClose={this.props.handleClose}
+                 addRestaurantToMyFav={this.props.addRestaurantToMyFav}
+                showModalToAddRestaurant={this.props.showModalToAddRestaurant} 
+                showAddRestaurant = {this.props.showAddRestaurant}
+                restaurants={this.props.restaurants} />
             </div>
 
         )
 
     }
 }
-
+// addRestaurantToMyFav={this.props.addRestaurantToMyFav} 
 export default Main;

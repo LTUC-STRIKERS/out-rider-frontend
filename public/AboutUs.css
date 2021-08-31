@@ -1,6 +1,6 @@
-body{
+/* body{
     margin-top:50px!important;
-}
+} */
 .our-team{
     text-align: center;
     position: relative;
@@ -70,15 +70,15 @@ body{
         margin-bottom: 30px;
     }
 }
-.row:nth-last-of-type(1)>div {
+.aboutus .row:nth-last-of-type(1)>div {
     margin-bottom: 25px;
 }
-.row:nth-last-of-type(1)>div:nth-of-type(4) {
+.aboutus .row:nth-last-of-type(1)>div:nth-of-type(4) {
     margin-left: 16%;
 }
 /* .row img{
     border:30px solid #B8140A;
 } */
-.container{
+.aboutus .container{
     margin-top: 3%;
 }

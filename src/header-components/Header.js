@@ -35,6 +35,7 @@ class Header extends React.Component {
               </Nav>
               <LogoutButton />
 
+
               <Form className="d-flex" onSubmit={this.props.getLocation}>
                 <FormControl
                   placeholder="Enter City Name"
