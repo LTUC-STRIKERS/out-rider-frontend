@@ -4,7 +4,8 @@ import yazeed from '../images/yazeed-pic.png'
 import duaa from '../images/duaa-pic.png'
 import mansoor from '../images/mansoor-pic.png'
 import ahmad from '../images/ahmad-pic.png'
-import trad from '../images/trad-pic.png'
+// import trad from '../images/trad-pic.png'
+import trad from '../images/trad-prof.jpg'
 import './AboutUs.css'
 let membersArray = [];
 class Member {
@@ -58,12 +59,12 @@ membersData();
 class AboutUs extends React.Component {
     render() {
         return (
-            <>
+            <div className='aboutus'>
                 <div className="container" style={{ width: "55%" }}>
                     <div className="row">
                         {membersArray.map(value => {
                             return (
-                                <div className="col-md-4 col-sm-6">
+                                <div className="col-md-4 col-sm-6" style={{height:'50vh'}}>
                                     <div className="our-team">
                                         <div className="pic">
                                             <img src={value.memberImage} className="img-responsive" />
@@ -83,7 +84,7 @@ class AboutUs extends React.Component {
                         })}
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }
