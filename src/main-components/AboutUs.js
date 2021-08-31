@@ -64,10 +64,18 @@ class AboutUs extends React.Component {
                     <div className="row">
                         {membersArray.map(value => {
                             return (
-                                <div className="col-md-4 col-sm-6" style={{height:'50vh'}}>
+                                <div className="col-md-4 col-sm-6" >
                                     <div className="our-team">
                                         <div className="pic">
-                                            <img src={value.memberImage} className="img-responsive" />
+                                            <img src={value.memberImage} 
+                                            
+                                            style={{
+                                                width: "100%",
+                                                height: "50vh",
+                                                objectFit: "cover",
+                                                maxHeight: "100vh",
+                                              }}
+                                            className="img-responsive" />
                                         </div>
                                         <div className="content">
                                             <h3 className="title">{value.memberName}</h3>

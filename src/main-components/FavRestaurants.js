@@ -14,7 +14,8 @@ class FavRestaurants extends React.Component {
           email: "",
           dataOfMyFav: this.props.dataOfMyFav,
           showDeleteRestaurant:false,
-          idOfdeletedFavRestaurant:''
+          idOfdeletedFavRestaurant:'',
+          favRestaurants:[]
         };
       }
 
@@ -28,8 +29,6 @@ class FavRestaurants extends React.Component {
   }    
     
 componentDidMount = async () => {
-const axios = require("axios");
-
         console.log('fffdddd');
         const { user } = this.props.auth0;
         console.log(this.props.auth0);
@@ -43,7 +42,7 @@ const axios = require("axios");
           );
 
           this.setState({
-            dataOfMyFav:dataOfPlace.data,
+            favRestaurants:dataOfPlace.data,
           })
           
         }
@@ -69,6 +68,8 @@ const axios = require("axios");
         })
       }
   render() {
+    let restaurants = this.state.dataOfMyFav === undefined ? this.state.favRestaurants : this.state.dataOfMyFav
+
     return (
       <>
 
@@ -80,7 +81,7 @@ const axios = require("axios");
         />
         <h2 style={{ margin: "20px auto",textAlign: "center"}}>My Favorite restaurants </h2>
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
-        {this.props.dataOfMyFav.map((restaurant, key) => (
+        {restaurants.map((restaurant, key) => (
            
           <FavRestaurant 
           showModalToDeleteRestaurant={this.showModalToDeleteRestaurant}
