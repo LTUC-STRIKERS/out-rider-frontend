@@ -8,6 +8,7 @@ import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
 import FavRestaurants from "./FavRestaurants";
+import ContactUs from "./ContactUs";
 const axios = require("axios");
 
 class App extends React.Component {
@@ -29,19 +30,6 @@ class App extends React.Component {
 
     };
   }
-
-             
-//   (
-//     this.props.restaurant.name,
-//     this.props.restaurant.rating,
-//     this.props.restaurant.image_url,
-//     this.props.restaurant.phone,
-//     this.props.restaurant.review_count,
-//     this.props.restaurant.url,
-//     this.props.restaurant.id,
-//     this.props.restaurant.longitude,
-//     this.props.restaurant.latitude, 
-// }
 
 
 ////////////////////////////
@@ -83,55 +71,7 @@ addRestaurantToMyFav = async () => {
   }
   console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
 };
-////////////////
-  // addRestaurantToMyFav = async (
-  //   name,
-  //   rating,
-  //   image_url,
-  //   phone,
-  //   review_count,
-  //   url,
-  //   id,
-  //   longitude,
-  //   latitude, 
-  // ) => {
-  //   const { user } = this.props.auth0;
-  //   console.log(this.props.auth0);
-  //   if (user !== undefined) {
-  //     let userEmail = user.email;
 
-  //     let newData = {
-  //       name: name,
-  //       rating: rating,
-  //       image_url: image_url,
-  //       email: userEmail,
-  //       phone: phone,
-  //       review_count: review_count,
-  //       url: url,
-  //       id_res: id,
-  //       longitude: longitude,
-  //       latitude: latitude,
-  //     };
-  //     console.log("dffdgfdgfgf", newData);
-  //     try {
-        
-      
-  //     let favRestaurants = await axios.post(
-  //       `${process.env.REACT_APP_SERVER}/addrestomyfavorite`,
-  //       newData
-  //     );
-  //     this.setState({
-  //       dataOfMyFav: favRestaurants.data,
-  //       showAddRestaurant:false
-  //     });
-
-  //   }
-  //   catch (e) {
-
-  //   }
-  //   }
-  //   console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
-  // };
 
   componentDidMount = async () => {
     
@@ -175,7 +115,7 @@ addRestaurantToMyFav = async () => {
           status: locationData.status,
           statusText: locationData.statusText,
         });
-        console.log('sssssssssssssssssssss',this.state.cityLocation);
+        console.log('sssssssssssssssssssss', this.state.cityLocation);
       })
       .catch((error) => {
         if (error.response) {
@@ -193,7 +133,7 @@ addRestaurantToMyFav = async () => {
       await this.setState({
         restaurants: restaurants.data,
       });
-      console.log(' insid rasturant:',this.state.restaurants);
+      console.log(' insid rasturant:', this.state.restaurants);
     } catch (error) {
       console.log("ERROR");
     }
@@ -248,7 +188,9 @@ addRestaurantToMyFav = async () => {
             <Route exact path="/aboutus">
               <AboutUs />
             </Route>
-            
+            <Route exact path="/contactus">
+              <ContactUs />
+            </Route>
           </Switch>
           <Footer />
         </Router>
@@ -257,4 +199,3 @@ addRestaurantToMyFav = async () => {
   }
 }
 export default withAuth0(App);
-// addRestaurantToMyFav={this.addRestaurantToMyFav}
