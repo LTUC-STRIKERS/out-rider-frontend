@@ -8,6 +8,7 @@ import MyFavorites from "./MyFavorites";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
 const axios = require("axios");
 
 class App extends React.Component {
@@ -77,7 +78,7 @@ class App extends React.Component {
           status: locationData.status,
           statusText: locationData.statusText,
         });
-        console.log('sssssssssssssssssssss',this.state.cityLocation);
+        console.log('sssssssssssssssssssss', this.state.cityLocation);
       })
       .catch((error) => {
         if (error.response) {
@@ -95,7 +96,7 @@ class App extends React.Component {
       await this.setState({
         restaurants: restaurants.data,
       });
-      console.log(' insid rasturant:',this.state.restaurants);
+      console.log(' insid rasturant:', this.state.restaurants);
     } catch (error) {
       console.log("ERROR");
     }
@@ -127,7 +128,9 @@ class App extends React.Component {
             <Route exact path="/aboutus">
               <AboutUs />
             </Route>
-            
+            <Route exact path="/contactus">
+              <ContactUs />
+            </Route>
           </Switch>
           <Footer />
         </Router>

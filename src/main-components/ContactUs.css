@@ -1,0 +1,25 @@
+#header{
+    font-size:20px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    height:100px;
+    background-color: #F60000;
+    
+}
+.text-center {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+    margin-left: 30%; 
+    margin-top:5%
+  }
+  
+  .text-center:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+  
+.alert{
+  left: 50%;
+    position: fixed;
+    transform: translate(-50%, -200px);
+    z-index: 9999;
+}
