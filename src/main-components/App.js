@@ -7,6 +7,7 @@ import Profile from "./Profile";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
+import AboutUsCards from "./AboutUsCards";
 import FavRestaurants from "./FavRestaurants";
 import ContactUs from "./ContactUs";
 const axios = require("axios");
@@ -186,7 +187,7 @@ addRestaurantToMyFav = async () => {
               <Favorites cityData={this.state} />
             </Route>
             <Route exact path="/aboutus">
-              <AboutUs />
+              <AboutUsCards />
             </Route>
             <Route exact path="/contactus">
               <ContactUs />
