@@ -58,7 +58,7 @@ membersData();
 class AboutUs extends React.Component {
     render() {
         return (
-            <>
+            <div className='aboutus'>
                 <div className="container" style={{ width: "55%" }}>
                     <div className="row">
                         {membersArray.map(value => {
@@ -83,7 +83,7 @@ class AboutUs extends React.Component {
                         })}
                     </div>
                 </div>
-            </>
+            </div>
         )
     }
 }

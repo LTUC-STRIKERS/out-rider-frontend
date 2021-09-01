@@ -7,6 +7,7 @@ class MyFavorite extends React.Component {
 
   render() {
     return (
+      
       <Col>
       <Card bg="secondary" text="white" style={{ margin: "30px 5px" }}>
         <Card.Img

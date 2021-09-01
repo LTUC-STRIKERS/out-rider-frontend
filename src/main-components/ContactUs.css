@@ -1,0 +1,68 @@
+.contactus .btn-primary {
+    color: #fff;
+    background-color: black;
+    width:25%;
+    font-family: "Gill Sans"
+  }
+  .contactus .btn-primary:hover {
+    background-color: #FFFFFF;
+    color: black;
+    font-family: "Gill Sans"
+  }
+  .contactus .btn {
+    line-height: 1;
+    padding: 0.5rem 1rem 0.5rem !important;
+    border-radius: 2px;
+    color: #fff; 
+    letter-spacing: 3px;    
+  }
+  .contactus .text-center{
+      width: 50%;
+      margin-left: 25%; 
+      margin-top:5%;
+      margin-bottom: 5%;
+    } 
+    .contactus .text-center h2 span{
+      color:#F60000;
+    }
+    .contactus .alert{
+      left: 50%;
+      position: fixed;
+      transform: translate(-50%, -200px);
+      z-index: 9000;
+      border-radius: 5px;
+  }
+  body .contactus{
+    background-color: #FCF8F4;
+  }
+  .content {
+    text-align: center;
+    font-family: "Gill Sans"
+  }
+  .contactus h2 {
+    font-size: 1.75rem;
+    margin: 0.67em 0;
+    font-family: "Gill Sans"
+  }
+  .contactus .container-sm {
+      padding-left: 1.875rem;
+      padding-right: 1.875rem;
+  }
+  .contactus .c-intro h2, .contactus .c-intro .h2,.contactus  .c-one-col--text h2 {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    padding-bottom: 1rem;
+  }
+  .contactus p  a{
+    text-decoration: none;
+    color: #000;
+    opacity: 0.7;
+  }
+  .contactus p{
+     color: #000;
+     opacity: 0.5;
+     font-size: 20px;
+  }
+  
+  
+  

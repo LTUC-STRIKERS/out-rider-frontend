@@ -8,6 +8,18 @@ import MyFavorites from "./MyFavorites";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
+import './App.css'
+import MainCard from "./landing-page/MainCard";
+import MainSection from "./landing-page/MainSection";
+import LandingPage from "./landing-page/LandingPage";
+import Mainheader from "./landing-page/MainHeader";
+import Banner from "./landing-page/Banner";
+import Bannerfav from "./landing-page/Bannerfav";
+import Bannermain from "./landing-page/Bannermain";
+import ContactUs from "./ContactUs";
+import BannerContact from "./landing-page/BannerContact";
+import Bannermap from "./landing-page/Bannermap";
+
 const axios = require("axios");
 
 class App extends React.Component {
@@ -32,7 +44,7 @@ class App extends React.Component {
     url,
     id,
   ) => {
-    const { user } = this.props.auth0;
+    const { user, isAuthenticated } = this.props.auth0;
     console.log(this.props.auth0);
     if (user !== undefined) {
       let userEmail = user.email;
@@ -77,7 +89,7 @@ class App extends React.Component {
           status: locationData.status,
           statusText: locationData.statusText,
         });
-        console.log('sssssssssssssssssssss',this.state.cityLocation);
+        console.log('sssssssssssssssssssss', this.state.cityLocation);
       })
       .catch((error) => {
         if (error.response) {
@@ -95,7 +107,7 @@ class App extends React.Component {
       await this.setState({
         restaurants: restaurants.data,
       });
-      console.log(' insid rasturant:',this.state.restaurants);
+      console.log(' insid rasturant:', this.state.restaurants);
     } catch (error) {
       console.log("ERROR");
     }
@@ -106,28 +118,49 @@ class App extends React.Component {
     return (
       <>
         <Router>
-          <Header getLocation={this.getLocation} />
+          <Mainheader getLocation={this.getLocation} />
+
           <Switch>
             <Route exact path="/">
+              {/* <div className='overlay' >
+               <Header getLocation={this.getLocation} /> */}
+              {/* style={{backgroundimage:`url(${backgroundimage})`}} */}
+              {/* <MainCard/>
+                </div>
+                <MainSection/> */}
+              <LandingPage />
+
+
+
+            </Route>
+            <Route exact path="/search">
+              <Bannermain />
               <Main
                 addRestaurantToMyFav={this.addRestaurantToMyFav}
                 restaurants={this.state.restaurants}
               />
-            </Route>
-            <Route exact path="/profile">
-              <Profile />
+
             </Route>
 
             <Route exact path="/MyFavorite">
+              <Bannerfav />
               <MyFavorites dataOfMyFav={this.state.dataOfMyFav} />
             </Route>
             <Route exact path="/favorites">
+              <Bannermap/>
               <Favorites cityData={this.state} />
             </Route>
+
+            <Route exact path="/contactus">
+              <BannerContact/>
+              <ContactUs/>
+            </Route>
+
             <Route exact path="/aboutus">
+              <Banner name='About Us' />
               <AboutUs />
             </Route>
-            
+
           </Switch>
           <Footer />
         </Router>
