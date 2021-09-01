@@ -12,7 +12,7 @@ function LogoutButton() {
   return isAuthenticated && (
     <Button  className="mr-2"  variant="danger" onClick={() => {
         logout({ returnTo: window.location.origin });
-      }}>Log out</Button>
+      }}>Log out{console.log('logout',logout)}</Button>
     // <button >Log out</button>
   );
 }

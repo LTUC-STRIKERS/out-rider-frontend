@@ -4,9 +4,10 @@ import yazeed from '../images/yazeed-pic.png'
 import duaa from '../images/duaa-pic.png'
 import mansoor from '../images/mansoor-pic.png'
 import ahmad from '../images/ahmad-pic.png'
-// import trad from '../images/trad-pic.png'
-import trad from '../images/trad-prof.jpg'
-import './AboutUs.css'
+import trad from '../images/trad-prof.jpg';
+import Card from './Card';
+import { Row } from "react-bootstrap";
+// import './AboutUs.css'
 let membersArray = [];
 class Member {
     constructor(memberName, memberbackground, memberFacebook, memberGithub, memberlinkedIn, memberImage) {
@@ -56,44 +57,14 @@ function membersData() {
 }
 membersData();
 ////////////////////////////////////////////////////
-class AboutUs extends React.Component {
+class AboutUsCards extends React.Component {
     render() {
         return (
-            <div className='aboutus'>
-                <div className="container" style={{ width: "55%" }}>
-                    <div className="row">
-                        {membersArray.map(value => {
-                            return (
-                                <div className="col-md-4 col-sm-6" >
-                                    <div className="our-team">
-                                        <div className="pic">
-                                            <img src={value.memberImage} 
-                                            
-                                            style={{
-                                                width: "100%",
-                                                height: "50vh",
-                                                objectFit: "cover",
-                                                maxHeight: "100vh",
-                                              }}
-                                            className="img-responsive" />
-                                        </div>
-                                        <div className="content">
-                                            <h3 className="title">{value.memberName}</h3>
-                                            <span className="post">{value.memberbackground}</span>
-                                            <ul className="social">
-                                                <li><a href={value.memberFacebook} className="fa fa-facebook"></a></li>
-                                                <li><a href={value.memberGithub} className="fa fa-github"></a></li>
-                                                <li><a href={value.memberlinkedIn} className="fa fa-linkedin"></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })}
-                    </div>
-                </div>
-            </div>
+            <Row xs={1} sm={2} md={3} lg={3} className="g-3">
+
+           { membersArray.map(member => <Card member={member} />)}
+            </Row>
         )
     }
 }
-export default AboutUs;
+export default AboutUsCards;

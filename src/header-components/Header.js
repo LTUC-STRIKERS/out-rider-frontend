@@ -24,7 +24,7 @@ class Header extends React.Component {
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
 
-            {isAuthenticated ? < >
+            {isAuthenticated ? <>
               <Nav className="me-auto"
                 style={{ maxHeight: '100px' }}
                 navbarScroll>
@@ -40,22 +40,7 @@ class Header extends React.Component {
               </Nav>
               <LogoutButton className='logout'/>
 
-              <Form className="d-flex" onSubmit={this.props.getLocation}>
-                <FormControl
-                  placeholder="Enter City Name"
-                  name="cityName"
-                  type="search"
-                  
-                  aria-label="Search"
-                />
-
-                <Button style={{ marginLeft: "10px" }} variant="outline-success" variant="secondary"  type="submit">
-                  {/* <Redirect  to="/" /> */}
-                  Explore!
-
-
-                </Button>
-              </Form>
+         
             </>
               : <LoginButton />}
 

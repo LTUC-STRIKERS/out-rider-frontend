@@ -3,8 +3,6 @@ import Header from "../header-components/Header";
 import Main from "./Main";
 import Footer from "../footer-components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Profile from "./Profile";
-import MyFavorites from "./MyFavorites";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
@@ -16,10 +14,13 @@ import Mainheader from "./landing-page/MainHeader";
 import Banner from "./landing-page/Banner";
 import Bannerfav from "./landing-page/Bannerfav";
 import Bannermain from "./landing-page/Bannermain";
-import ContactUs from "./ContactUs";
 import BannerContact from "./landing-page/BannerContact";
 import Bannermap from "./landing-page/Bannermap";
 
+import AboutUsCards from "./AboutUsCards";
+import FavRestaurants from "./FavRestaurants";
+import ContactUs from "./ContactUs";
+import { withRouter } from 'react-router-dom';
 const axios = require("axios");
 
 class App extends React.Component {
@@ -33,43 +34,81 @@ class App extends React.Component {
       cityLocation: {},
       email: "",
       dataOfMyFav: [],
+      user: this.props.auth0,
+      showAddRestaurant:false,
+      favRestaurant:{},
+      showDeleteRestaurant:false,
+      idOfdeletedFavRestaurant:'',
+      gotToSearchPage:false
+
     };
   }
-  addRestaurantToMyFav = async (
-    name,
-    rating,
-    image_url,
-    phone,
-    review_count,
-    url,
-    id,
-  ) => {
-    const { user, isAuthenticated } = this.props.auth0;
-    console.log(this.props.auth0);
-    if (user !== undefined) {
-      let userEmail = user.email;
 
-      let newData = {
-        name: name,
-        rating: rating,
-        image_url: image_url,
-        email: userEmail,
-        phone: phone,
-        review_count: review_count,
-        url: url,
-        id: id,
-      };
-      console.log("dffdgfdgfgf", newData);
-      let favRestaurants = await axios.post(
-        `${process.env.REACT_APP_SERVER}/addrestomyfavorite`,
-        newData
-      );
-      this.setState({
-        dataOfMyFav: favRestaurants.data,
-      });
-    }
-    console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
-  };
+
+////////////////////////////
+addRestaurantToMyFav = async () => {
+  const { user } = this.props.auth0;
+  console.log(this.props.auth0);
+  if (user !== undefined) {
+    let userEmail = user.email;
+
+    let newData = {
+      name: this.state.favRestaurant.name,
+      rating: this.state.favRestaurant.rating,
+      image_url: this.state.favRestaurant.image_url,
+      email: userEmail,
+      phone: this.state.favRestaurant.phone,
+      review_count: this.state.favRestaurant.review_count,
+      url: this.state.favRestaurant.url,
+      id_res: this.state.favRestaurant.id,
+      longitude: this.state.favRestaurant.longitude,
+      latitude: this.state.favRestaurant.latitude,
+    };
+    console.log("dffdgfdgfgf", newData);
+    try {
+      
+    
+    let favRestaurants = await axios.post(
+      `${process.env.REACT_APP_SERVER}/addrestomyfavorite`,
+      newData
+    );
+    this.setState({
+      dataOfMyFav: favRestaurants.data,
+      showAddRestaurant:false
+    });
+
+  }
+  catch (e) {
+
+  }
+  }
+  console.log("iside addRestaurantToMyFav: ", this.state.dataOfMyFav);
+};
+
+
+  componentDidMount = async () => {
+    
+            console.log('fffdddd');
+            console.log(this.props.auth0);
+            if (this.state.user !== undefined) {
+              console.log('jj');
+              let userEmail = this.state.user.email;
+              this.setState({
+                email: userEmail,
+              });
+              let dataOfPlace =  axios.get(
+                `${process.env.REACT_APP_SERVER}/favoriterestaurents?email=${userEmail}`
+              );
+    
+             await this.setState({
+                dataOfMyFav:dataOfPlace.data,
+              })
+              console.log('kkkkkkkkkkkkkkkkkkkk',this.state.dataOfMyFav);
+            // this.props.stateFunctionData( dataOfPlace.data); 
+              
+            }
+            
+          };
 
   getLocation = async (e) => {
     e.preventDefault();
@@ -78,7 +117,7 @@ class App extends React.Component {
       cityName: e.target.cityName.value,
     });
 
-    axios
+   await axios
       .get(
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.cityName}&format=json`
       )
@@ -106,7 +145,9 @@ class App extends React.Component {
       );
       await this.setState({
         restaurants: restaurants.data,
+        gotToSearchPage:true
       });
+      this.props.history.push('/search');
       console.log(' insid rasturant:', this.state.restaurants);
     } catch (error) {
       console.log("ERROR");
@@ -114,11 +155,28 @@ class App extends React.Component {
     // window.location.href ='/'
   };
 
+  showModalToAddRestaurant = (id)=>{
+    let restaurant = this.state.restaurants.find(restaurant => restaurant.id=== id);
+
+
+    this.setState({
+      showAddRestaurant:true,
+      favRestaurant:restaurant
+    })
+  }
+
+  handleClose= ()=>{
+    this.setState({
+      showAddRestaurant:false,
+    })
+  }
+
+  
   render() {
     return (
       <>
         <Router>
-          <Mainheader getLocation={this.getLocation} />
+          <Mainheader />
 
           <Switch>
             <Route exact path="/">
@@ -133,10 +191,15 @@ class App extends React.Component {
 
 
             </Route>
+         
             <Route exact path="/search">
               <Bannermain />
               <Main
+               getLocation={this.getLocation}
+                handleClose={this.handleClose}
+                showModalToAddRestaurant={this.showModalToAddRestaurant} 
                 addRestaurantToMyFav={this.addRestaurantToMyFav}
+                showAddRestaurant = {this.state.showAddRestaurant}
                 restaurants={this.state.restaurants}
               />
 
@@ -144,7 +207,11 @@ class App extends React.Component {
 
             <Route exact path="/MyFavorite">
               <Bannerfav />
-              <MyFavorites dataOfMyFav={this.state.dataOfMyFav} />
+              
+              <FavRestaurants 
+      
+              dataOfMyFav={this.state.dataOfMyFav}
+              />
             </Route>
             <Route exact path="/favorites">
               <Bannermap/>
@@ -157,9 +224,13 @@ class App extends React.Component {
             </Route>
 
             <Route exact path="/aboutus">
+
               <Banner name='About Us' />
-              <AboutUs />
+               <AboutUsCards />
             </Route>
+
+       
+     
 
           </Switch>
           <Footer />
@@ -168,4 +239,4 @@ class App extends React.Component {
     );
   }
 }
-export default withAuth0(App);
+export default withAuth0 (App);

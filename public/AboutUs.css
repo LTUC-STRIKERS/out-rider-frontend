@@ -1,4 +1,6 @@
-
+/* body{
+    margin-top:50px!important;
+} */
 .our-team{
     text-align: center;
     position: relative;
@@ -72,11 +74,11 @@
     margin-bottom: 25px;
 }
 .aboutus .row:nth-last-of-type(1)>div:nth-of-type(4) {
-    margin-left: 16%; }
-
-.aboutus .row img{
-    border:30px solid #B8140A;
+    margin-left: 16%;
 }
+/* .row img{
+    border:30px solid #B8140A;
+} */
 .aboutus .container{
     margin-top: 3%;
 }
