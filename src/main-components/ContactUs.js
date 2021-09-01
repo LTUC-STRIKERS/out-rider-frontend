@@ -35,8 +35,7 @@ const ContactUs = () => {
                         We’d Love to Hear from You!
                         <br />
                         Send us a message and we’ll get back to you as soon as possible.
-                        You can also reach us by phone in JO,Amman at  <a href="tel:+962 789974822"> +962 789974822 </a>
-                        Looking forward to hearing from you.
+                        You can also reach us by phone in JO,Amman at +962 789974822 Looking forward to hearing from you.
                     </p>
                 </div>
                 <Form onSubmit={handleSubmit}>

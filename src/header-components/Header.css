@@ -1,4 +1,4 @@
-a{
+.header a{
   color:#fff;
   display: inline-block;
   margin: 0 10px ;
@@ -8,7 +8,7 @@ a{
   font-size: 19px;
 }
 
-a:hover{
+.header a:hover{
   color:darkgrey;
 }
 /* .header{

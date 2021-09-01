@@ -10,10 +10,10 @@ class SubCard3 extends React.Component {
         return (
             <div className='Subcard1'>
             <h1>
-                Why US?
+                Comming soon !
             </h1>
-            <p>This site supports the Resturans buisnesses in all the major tourests attractions around the globe. Explore food from turkish, italian, french and English cuasine</p>
-            <a href="/aboutus">About us</a>
+            <p>Our team is currently working on a feature where you can add your experience and post it on  restaurants cards where is it visable to the public because your opinion matter.</p>
+            
         </div>
         )
     }

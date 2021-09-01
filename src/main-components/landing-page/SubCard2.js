@@ -10,10 +10,10 @@ class SubCard2 extends React.Component {
         return (
             <div className='Subcard2'>
             <h1>
-                Why US?
+                Navigation
             </h1>
-            <p>This site supports the Resturans buisnesses in all the major tourests attractions around the globe. Explore food from turkish, italian, french and English cuasine</p>
-            <a href="/aboutus">About us</a>
+            <p>OutRider  supports a navigation option. You get to use a map to explore the restaurants in the city as well as add restaurants to your favourite to be displayed on map.</p>
+           
         </div>
         )
     }
