@@ -27,9 +27,9 @@
             <div className='row'>
               <div className='col-xs-6'>
                 <img src={this.props.member.memberImage} style={{
-              width: "100vw",
+              width: "100%",
               height: "40vh",
-              objectFit: "contain",
+              objectFit: "fit",
               maxHeight: "100vh",
             }} />
               </div>

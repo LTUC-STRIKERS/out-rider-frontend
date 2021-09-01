@@ -5,11 +5,13 @@ class RestaurantBack extends React.Component {
       return(
         <div className='card-side side-back'>
           <div className='container-fluid'>
-            <h1>Let's get in touch!</h1>
+            <h2>{this.props.restaurant.name}</h2>
+
             <Button
             onClick={()=>{this.props.showModalToAddRestaurant(this.props.restaurant.id)}}
             type="click"
-            variant="secondary"
+            variant="danger"
+            
           >
             Add To My Favorites
           </Button>

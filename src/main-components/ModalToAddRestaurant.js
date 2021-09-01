@@ -18,12 +18,21 @@ class ModalToAddRestaurant extends React.Component {
                 <Modal.Body>
 
           <Button
+          style={{ marginRight:'10px'}}
             onClick={this.props.addRestaurantToMyFav}
    
             type="click"
-            variant="secondary"
+            variant="success"
           >
             Proceed
+          </Button>
+          <Button
+            onClick={this.props.handleClose}
+   
+            type="click"
+            variant="danger"
+          >
+            cancel 
           </Button>
 
                 </Modal.Body>
