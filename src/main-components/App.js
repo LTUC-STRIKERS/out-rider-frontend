@@ -3,13 +3,24 @@ import Header from "../header-components/Header";
 import Main from "./Main";
 import Footer from "../footer-components/Footer";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Profile from "./Profile";
 import { withAuth0 } from "@auth0/auth0-react";
 import Favorites from "./fav-components/Favorites";
 import AboutUs from "./AboutUs";
+import './App.css'
+import MainCard from "./landing-page/MainCard";
+import MainSection from "./landing-page/MainSection";
+import LandingPage from "./landing-page/LandingPage";
+import Mainheader from "./landing-page/MainHeader";
+import Banner from "./landing-page/Banner";
+import Bannerfav from "./landing-page/Bannerfav";
+import Bannermain from "./landing-page/Bannermain";
+import BannerContact from "./landing-page/BannerContact";
+import Bannermap from "./landing-page/Bannermap";
+
 import AboutUsCards from "./AboutUsCards";
 import FavRestaurants from "./FavRestaurants";
 import ContactUs from "./ContactUs";
+import { withRouter } from 'react-router-dom';
 const axios = require("axios");
 
 class App extends React.Component {
@@ -27,7 +38,8 @@ class App extends React.Component {
       showAddRestaurant:false,
       favRestaurant:{},
       showDeleteRestaurant:false,
-      idOfdeletedFavRestaurant:''
+      idOfdeletedFavRestaurant:'',
+      gotToSearchPage:false
 
     };
   }
@@ -133,7 +145,9 @@ addRestaurantToMyFav = async () => {
       );
       await this.setState({
         restaurants: restaurants.data,
+        gotToSearchPage:true
       });
+      this.props.history.push('/search');
       console.log(' insid rasturant:', this.state.restaurants);
     } catch (error) {
       console.log("ERROR");
@@ -162,36 +176,62 @@ addRestaurantToMyFav = async () => {
     return (
       <>
         <Router>
-          <Header getLocation={this.getLocation} />
+          <Mainheader />
+
           <Switch>
             <Route exact path="/">
+              {/* <div className='overlay' >
+               <Header getLocation={this.getLocation} /> */}
+              {/* style={{backgroundimage:`url(${backgroundimage})`}} */}
+              {/* <MainCard/>
+                </div>
+                <MainSection/> */}
+              <LandingPage />
+
+
+
+            </Route>
+         
+            <Route exact path="/search">
+              <Bannermain />
               <Main
+               getLocation={this.getLocation}
                 handleClose={this.handleClose}
                 showModalToAddRestaurant={this.showModalToAddRestaurant} 
                 addRestaurantToMyFav={this.addRestaurantToMyFav}
                 showAddRestaurant = {this.state.showAddRestaurant}
                 restaurants={this.state.restaurants}
               />
-            </Route>
-            <Route exact path="/profile">
-              <Profile />
+
             </Route>
 
             <Route exact path="/MyFavorite">
+              <Bannerfav />
+              
               <FavRestaurants 
       
               dataOfMyFav={this.state.dataOfMyFav}
               />
             </Route>
             <Route exact path="/favorites">
+              <Bannermap/>
               <Favorites cityData={this.state} />
             </Route>
-            <Route exact path="/aboutus">
-              <AboutUsCards />
-            </Route>
+
             <Route exact path="/contactus">
-              <ContactUs />
+              <BannerContact/>
+              <ContactUs/>
             </Route>
+
+            <Route exact path="/aboutus">
+
+              <Banner name='About Us' />
+               <AboutUsCards />
+            </Route>
+
+       
+     
+
           </Switch>
           <Footer />
         </Router>
@@ -199,4 +239,4 @@ addRestaurantToMyFav = async () => {
     );
   }
 }
-export default withAuth0(App);
+export default withAuth0 (App);

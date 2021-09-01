@@ -1,0 +1,278 @@
+
+
+.maincards a {
+    color: black;
+    text-decoration: none;
+    letter-spacing: 3px;
+
+}
+.maincards{
+    padding:40px;
+    background-color: whitesmoke;
+    width: 400px;
+    height:30%;
+    font-family: "Gill Sans";
+    font-size: 1rem;
+    line-height: 1.5;
+    vertical-align: center;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position:absolute   ;   
+
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+   /* top:auto; */
+}
+.maincards a,.maincards p{
+    color: gray;
+}
+
+.mainsection{
+    height: auto;
+    background-color: #FCF8F4;
+}
+/* subsection 1*/
+.subsection{
+    position: relative;
+    height: 600px;
+    padding: 50px ;
+    /* border: 1px solid black; */
+    vertical-align: center;
+}
+.imageAsBackground{
+    background-image:url('../../images/subcard1.jpg');
+    width:750px;
+    height: 400px;
+    position: absolute;
+    right:5%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* subsection1 */
+/* subsection3 */
+
+.imageAsBackground3{
+    background-image:url('../../images/subcard3.jpg');
+    width:750px;
+    height: 400px;
+    position: absolute;
+    right:5%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    top: 50%;
+    transform: translateY(-50%);}
+/* subsection3 */
+/* subsection2 */
+.imageAsBackground2{
+    background-image:url('../../images/map.png');
+    width:750px;
+    height: 400px;
+    position: absolute;
+    left:5%;
+    background-size: cover;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border:30px solid #FCF8F4;
+    top: 50%;
+    transform: translateY(-50%);}
+
+/* subsection2 */
+/*  Sub card 1*/
+.Subcard1 a {
+    color: black;
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+.Subcard1{
+    padding:40px;
+    background-color: whitesmoke;
+    width: 500px;
+    /* height:40%; */
+    font-family: "Gill Sans";
+    font-size: 1rem;
+    line-height: 1.5;
+    vertical-align: center;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position:absolute   ;   
+
+    left:15%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.Subcard1 a,.Subcard1 p{
+    color: gray;
+    font-size: large;
+}
+/*sub card1*/
+/*sub card2*/
+.Subcard2 a {
+    color: black;
+    text-decoration: none;
+    letter-spacing: 3px;
+}
+.Subcard2{
+    padding:40px;
+    background-color: whitesmoke;
+    width: 500px;
+    /* height:40%; */
+    font-family: "Gill Sans";
+    font-size: 1rem;
+    line-height: 1.5;
+    vertical-align: center;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+    position:absolute   ;   
+
+    right:15%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.Subcard2 a,.Subcard2 p{
+    color: gray;
+    font-size: large;
+}
+
+/*sub card2*/
+/* overlay */
+
+.overlay{
+    position: relative;
+    width: 100%;
+    height: 700px;
+    background-image: url('../../images/tyson-JTiXmaBDynQ-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: 5s;
+  
+  
+    animation-name:animate ;
+    animation-direction: alternate-reverse ;
+    animation-duration:30s ;
+    animation-fill-mode:forwards ;
+    animation-iteration-count:infinite ;
+    animation-play-state:running ;
+    animation-timing-function: ease-in-out;
+  
+  }
+  @keyframes animate{
+  0%{ background-image: url('../../images/calum-lewis-vA1L1jRTM70-unsplash.jpg');}
+  20%{ background-image: url('../../images/shawnanggg-nmpW_WwwVSc-unsplash.jpg');}
+  40%{ background-image: url('../../images/nadine-primeau--ftWfohtjNw-unsplash.jpg');}
+  60%{ background-image: url('../../images/nick-karvounis-Ciqxn7FE4vE-unsplash.jpg');}
+  80%{ background-image: url('../../images/stefan-vladimirov-Q_Moi2xjieU-unsplash.jpg');}
+  100%{ background-image: url('../../images/kevin-grieve-Q-5COoD1k4I-unsplash.jpg');}
+  
+  }
+/* overlay */
+/* subsection4 */
+
+
+.imageAsBackground4{
+    /* background-image:url('../../images/subsection4.jpg'); */
+
+    background:linear-gradient(45deg, rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)), url(../../images/subsection4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 0;
+    min-height: 20rem;
+    text-align: center;
+    color: #fff;
+    /* background-color: #222; */
+    /* padding-top: 56.25%; */
+    overflow: hidden;
+ background-attachment: fixed;
+}
+ 
+.imageAsBackground4 p{
+    font-family: 'Gill Sans';
+    font-size: 20vh;
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    letter-spacing: 3vh;
+    left:25vw;
+
+
+}
+
+
+/* subsection4 */
+
+/* innerheader */
+.innerheader{
+    width:auto;
+    
+    right:0%;
+    position:absolute;
+   
+   
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+}
+/* innerheader */
+
+/* outerheader */
+.outerheader{
+  width:100%;
+  height:15vh;
+    background-color: rgba(0, 0, 0, 0.6);;
+opacity: 1;
+position: fixed;
+z-index: 999;
+top:0%;
+}
+/* outerheader */
+/* banner */
+.banner{
+    background-image:url('../../images/banner2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    position: relative;
+    z-index: 0;
+    min-height: 30rem;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    /* background-color: #222; */
+    /* padding-top: 56.25%; */
+    overflow: hidden;
+ background-attachment: fixed;
+ opacity: 1;
+}
+ 
+.banner p{
+    font-family: 'Gill Sans';
+    font-size: 20vh;
+    position:absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    letter-spacing: 3vh;
+    text-align: center;
+    width: 100%;
+
+
+}
+/* banner */
+.red{
+    color: #FA5151;
+}
+/* banner */
+/* button */
+.mr-2{
+    width:7vw;
+    font-size: 20px;
+    font-family: 'Gill Sans';
+}
