@@ -1,0 +1,24 @@
+.header a{
+  color:#fff;
+  display: inline-block;
+  margin: 0 10px ;
+  text-decoration: none;
+  font-family: 'Gill Sans';
+  margin-right: 10vh;
+  font-size: 19px;
+}
+
+.header a:hover{
+  color:darkgrey;
+}
+/* .header{
+  width:auto;
+  opacity: 0.5;
+  right:0%;
+  position:absolute;
+  margin-top: 7vh;
+} */
+.logout{
+position:absolute;
+right:0%;
+}
