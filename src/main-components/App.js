@@ -39,8 +39,6 @@ class App extends React.Component {
       favRestaurant:{},
       showDeleteRestaurant:false,
       idOfdeletedFavRestaurant:'',
-      gotToSearchPage:false
-
     };
   }
 
@@ -122,7 +120,6 @@ addRestaurantToMyFav = async () => {
         `https://eu1.locationiq.com/v1/search.php?key=${process.env.REACT_APP_LOCATION_KEY}&q=${this.state.cityName}&format=json`
       )
       .then((locationData) => {
-        // console.log("location data"+locationData);
         this.setState({
           cityLocation: locationData.data[0],
           status: locationData.status,
@@ -145,14 +142,11 @@ addRestaurantToMyFav = async () => {
       );
       await this.setState({
         restaurants: restaurants.data,
-        gotToSearchPage:true
       });
-      this.props.history.push('/search');
       console.log(' insid rasturant:', this.state.restaurants);
     } catch (error) {
-      console.log("ERROR");
+      console.log('dddd',error);
     }
-    // window.location.href ='/'
   };
 
   showModalToAddRestaurant = (id)=>{
@@ -180,15 +174,8 @@ addRestaurantToMyFav = async () => {
 
           <Switch>
             <Route exact path="/">
-              {/* <div className='overlay' >
-               <Header getLocation={this.getLocation} /> */}
-              {/* style={{backgroundimage:`url(${backgroundimage})`}} */}
-              {/* <MainCard/>
-                </div>
-                <MainSection/> */}
+  
               <LandingPage />
-
-
 
             </Route>
          

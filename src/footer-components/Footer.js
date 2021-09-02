@@ -14,7 +14,7 @@ class Footer extends React.Component {
             <h3>contact by email</h3>
             <span>E-mail : <a href="mailto:outriderapp@gmail.com" >outriderapp@gmail.com</a> </span>
             <br />
-            <h3>location</h3>     <div class="textwidget"><address>Jordan,Amman<br />
+            <h3>location</h3>     <div className="textwidget"><address>Jordan,Amman<br />
               phone: <a href="tel:+962 789974822"> +962 789974822 </a></address>
             </div>
           </div>

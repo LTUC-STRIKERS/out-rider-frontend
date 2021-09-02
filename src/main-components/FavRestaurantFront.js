@@ -23,7 +23,7 @@ class FavRestaurantFront extends React.Component {
                 <StarRatings
           rating={this.props.restaurant.rating}
         //   starEmptyColor="gray"
-          starRatedColor='yellow'
+          starRatedColor='rgb(0,0,0,0.8)'
           starDimension='35px'
         //   changeRating={this.changeRating}
           numberOfStars={5}

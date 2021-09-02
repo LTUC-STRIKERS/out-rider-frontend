@@ -14,7 +14,7 @@ class ModalToAddRestaurant extends React.Component {
             <Modal show={this.props.showDeleteRestaurant} onHide={this.props.handleCloseDeleteModal}>
 
                 <Modal.Header closeButton>
-                    <Modal.Title>Delete This Restaurant </Modal.Title>
+                    <Modal.Title>Delete it from favorites </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -22,11 +22,19 @@ class ModalToAddRestaurant extends React.Component {
             onClick={this.props.deleteRestaurant}
    
             type="click"
-            variant="secondary"
+            variant="danger"
           >
-            Are You Sure
+            Delete
           </Button>
-
+          <Button
+          style={{marginLeft:'10px'}}
+            onClick={this.props.handleCloseDeleteModal}
+   
+            type="click"
+            variant="success"
+          >
+            cancel 
+          </Button>
                 </Modal.Body>
      
             </Modal>
