@@ -115,7 +115,7 @@ class Favorites extends React.Component {
   render() {
     return (
       <>
-        <h2 style={{ margin: "20px auto" }}>Restaurants </h2>
+        {/* <h2 style={{ margin: "20px auto" }}>Restaurants </h2> */}
         <div ref={el => (this.mapWrapper = el)} className="mapWrapper" />
       </>
     )

@@ -26,12 +26,20 @@
       color:#F60000;
     }
     .contactus .alert{
-      left: 50%;
-      position: fixed;
-      transform: translate(-50%, -200px);
-      z-index: 9000;
+      
+      position: absolute;
+      /* width: 15%; */
+      opacity: 1;
+      top:50%;
+     margin-left:125px ;
+      font-family: "Gill Sans";
+     
       border-radius: 5px;
   }
+
+
+
+
   body {
     background-color: #FCF8F4;
   }
@@ -63,7 +71,10 @@
      opacity: 0.5;
      font-size: 20px;
   }
+
  
-  
+  .contactus{
+    position: relative;
+  }
   
   

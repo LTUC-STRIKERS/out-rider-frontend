@@ -37,7 +37,11 @@ const ContactUs = () => {
                         Send us a message and we’ll get back to you as soon as possible.
                         You can also reach us by phone in JO,Amman at +962 789974822 Looking forward to hearing from you.
                     </p>
-                </div>
+                </div> 
+                <Toast className="alert" show={show} onClose={() => setShow(false)} delay={3000} autohide>
+                <Toast.Header>Thank you for getting in touch!</Toast.Header>
+                <Toast.Body>We appreciate you contacting us/ OUT RIDER. One of our colleagues will get back in touch with you soon!Have a great day!</Toast.Body>
+            </Toast>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className="mb-3" required >
                         {/* <Form.Label for="name">Name</Form.Label> */}
@@ -56,10 +60,8 @@ const ContactUs = () => {
                     </Button>
                 </Form>
             </div>
-            <Toast className="alert" show={show} onClose={() => setShow(false)} delay={3000} autohide>
-                <Toast.Header>Thank you for getting in touch!</Toast.Header>
-                <Toast.Body>We appreciate you contacting us/ OUT RIDER. One of our colleagues will get back in touch with you soon!Have a great day!</Toast.Body>
-            </Toast>
+           
+            
         </div>
     );
 };

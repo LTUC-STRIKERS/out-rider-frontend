@@ -13,7 +13,7 @@ class Restaurants extends React.Component {
           addRestaurantToMyFav={this.props.addRestaurantToMyFav}
           handleClose={this.props.handleClose}
           />
-        <h2 style={{ margin: "20px auto" ,textAlign: "center"}}>Restaurants </h2>
+        {/* <h2 style={{ margin: "20px auto" ,textAlign: "center"}}>Restaurants </h2> */}
         <Row xs={1} sm={2} md={3} lg={4} className="g-4">
           {this.props.restaurants.map((restaurant, idx) => (
             <Restaurant

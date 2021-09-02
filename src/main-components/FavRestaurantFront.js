@@ -17,7 +17,7 @@ class FavRestaurantFront extends React.Component {
               </div>
   
               <div className='col-xs-6 side-front-content'>
-                <h2>{this.props.restaurant.name}</h2>
+                {/* <h2>{this.props.restaurant.name}</h2> */}
   
                 {/* <p> */}
                 <StarRatings
